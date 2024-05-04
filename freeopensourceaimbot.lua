@@ -2,7 +2,7 @@ local CoreGui = game:GetService("StarterGui")
 
 CoreGui:SetCore("SendNotification", {
 	Title = "Uico's Lock";
-	Text = "Press 4 to lock";
+	Text = "Press Z to lock";
 	Duration = 5;
 	--Callback here
 	Button1 = "Yes";
@@ -96,7 +96,7 @@ end
 
 -- Bind the lockMouseToPlayerHead function to the 'G' key press
 UserInputService.InputBegan:Connect(function(input)
-	if input.KeyCode == Enum.KeyCode.4 then
+	if input.KeyCode == Enum.KeyCode.Z then
 		if not isMouseLocked then
 			local mouse = LocalPlayer:GetMouse()
 			local mousePosition = Vector2.new(mouse.X, mouse.Y)
