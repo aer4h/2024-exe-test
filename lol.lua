@@ -4246,8 +4246,7 @@ end
 
 CMDs = {}
 CMDs[#CMDs + 1] = {NAME = 'pulsetp / ptp [plr] [seconds]', DESC = 'Teleports you to a player for a specified ammount of time'}
-
-=addcmd('pulsetp',{'ptp'},function(args, speaker)
+addcmd('pulsetp',{'ptp'},function(args, speaker)
 	local players = getPlayer(args[1], speaker)
 	for i,v in pairs(players)do
 		if Players[v].Character ~= nil then
