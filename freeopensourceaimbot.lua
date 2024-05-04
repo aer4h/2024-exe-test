@@ -1,11 +1,10 @@
---credit me if using.
-
 local CoreGui = game:GetService("StarterGui")
 
 CoreGui:SetCore("SendNotification", {
 	Title = "Uico's Lock";
-	Text = "Press G to lock";
+	Text = "Press 4 to lock";
 	Duration = 5;
+	--Callback here
 	Button1 = "Yes";
 })
 
@@ -16,10 +15,10 @@ local LocalPlayer = Players.LocalPlayer
 local isMouseLocked = false
 local targetPlayer = nil
 
-
+-- Variable to track the visibility state of the frame
 local frameVisible = true
 
-
+-- Function to toggle the visibility of the frame
 local function toggleFrameVisibility()
 	frameVisible = not frameVisible
 	for _, player in ipairs(Players:GetPlayers()) do
@@ -30,19 +29,21 @@ local function toggleFrameVisibility()
 	end
 end
 
-
+-- Function to lock the mouse to a player's head
 local function lockMouseToPlayerHead(player)
 	targetPlayer = player
 	isMouseLocked = true
 	UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
 end
 
+-- Function to unlock the mouse
 local function unlockMouse()
 	targetPlayer = nil
 	isMouseLocked = false
 	UserInputService.MouseBehavior = Enum.MouseBehavior.Default
 end
 
+-- Function to find the nearest player's head to the mouse position
 local function findNearestPlayerHead(mousePosition)
 	local nearestPlayer = nil
 	local minDistance = math.huge
@@ -72,6 +73,7 @@ local function findNearestPlayerHead(mousePosition)
 	return nearestPlayer
 end
 
+-- Function to continuously update the camera position and rotation to match the player's movement
 local function updateCamera()
 	if isMouseLocked and targetPlayer then
 		local character = targetPlayer.Character
@@ -86,14 +88,15 @@ local function updateCamera()
 				)
 				camera.CFrame = newCameraCFrame
 			else
-				unlockMouse()
+				unlockMouse() -- Unlock mouse if the player's head is missing
 			end
 		end
 	end
 end
 
+-- Bind the lockMouseToPlayerHead function to the 'G' key press
 UserInputService.InputBegan:Connect(function(input)
-	if input.KeyCode == Enum.KeyCode.G then
+	if input.KeyCode == Enum.KeyCode.4 then
 		if not isMouseLocked then
 			local mouse = LocalPlayer:GetMouse()
 			local mousePosition = Vector2.new(mouse.X, mouse.Y)
@@ -107,4 +110,5 @@ UserInputService.InputBegan:Connect(function(input)
 	end
 end)
 
+-- Update the camera position and rotation every frame
 game:GetService("RunService").RenderStepped:Connect(updateCamera)
