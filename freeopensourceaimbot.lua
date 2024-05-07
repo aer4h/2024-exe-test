@@ -1,8 +1,8 @@
 local CoreGui = game:GetService("StarterGui")
 
 CoreGui:SetCore("SendNotification", {
-	Title = "Uico's Lock";
-	Text = "Press Z to lock";
+	Title = "Camlock [V1.0.0]";
+	Text = "Keybind: Z";
 	Duration = 5;
 	--Callback here
 	Button1 = "Yes";
